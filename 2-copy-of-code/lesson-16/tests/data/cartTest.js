@@ -1,9 +1,11 @@
 import {addToCart, cart, loadFromStorage} from '../../data/cart.js';
 
 describe('test suite: addToCart', function() {
-  it('adds an existing product to the cart', function() {
+  beforeEach(function() {
     spyOn(localStorage, 'setItem');
+  });
 
+  it('adds an existing product to the cart', function() {
     spyOn(localStorage, 'getItem').and.callFake(function() {
       return JSON.stringify([{
         productId: 'e43638ce-6aa0-4b85-b27f-e1d07eb678c6',
@@ -26,8 +28,6 @@ describe('test suite: addToCart', function() {
   });
 
   it('adds a new product to the cart', function() {
-    spyOn(localStorage, 'setItem');
-
     spyOn(localStorage, 'getItem').and.callFake(function() {
       return JSON.stringify([]);
     });
